@@ -1,4 +1,6 @@
 # Lucky Home CAFE' Management System
+![lucky-removebg-preview](https://github.com/thanidacwn/lucky-home-cafe/assets/92778351/3446c512-72b8-41b4-94b5-83fb08a33c01)
+
 The Lucky Home CAFE' Management System is a web application designed to streamline cafe operations for employees and owners. This README provides an overview of the application's features, installation instructions, and key information to get started.
 ## Location
 https://maps.app.goo.gl/7K7oicfUNF5bpwbc6
