@@ -1,5 +1,7 @@
 # Lucky Home CAFE' Management System
 The Lucky Home CAFE' Management System is a web application designed to streamline cafe operations for employees and owners. This README provides an overview of the application's features, installation instructions, and key information to get started.
+## Location
+https://maps.app.goo.gl/7K7oicfUNF5bpwbc6
 ## Features
 - **Order System:**
   - Browse the cafe's menu, customize orders, and efficiently create and manage customer requests.
