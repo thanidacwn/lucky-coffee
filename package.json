@@ -1,0 +1,18 @@
+{
+  "name": "lucky-home-cafe",
+  "version": "1.0.0",
+  "description": "![lucky-removebg-preview](https://github.com/thanidacwn/lucky-home-cafe/assets/92778351/3446c512-72b8-41b4-94b5-83fb08a33c01)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
