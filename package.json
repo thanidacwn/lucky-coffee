@@ -9,9 +9,8 @@
     "backend": "cd backend && npm start",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Lucky Home Cafe'",
+  "license": "MIT",
   "dependencies": {
     "concurrently": "^8.2.2"
   }
