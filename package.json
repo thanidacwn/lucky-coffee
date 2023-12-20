@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "cd frontend && yarn dev",
-    "backend": "cd backend && yarn start",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+    "frontend": "cd frontend && yarn install && yarn dev",
+    "backend": "cd backend && yarn install && yarn start",
+    "dev": "concurrently \"yarn frontend\" \"yarn backend\""
   },
   "author": "Lucky Home Cafe'",
   "license": "MIT",
