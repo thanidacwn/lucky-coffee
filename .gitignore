@@ -24,3 +24,5 @@ config.ts
 *.sln
 *.sw?
 env
+yarn.lock
+frontend/yarn.lock
