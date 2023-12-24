@@ -1,18 +1,23 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login';
+import Menu from './pages/Menu';
+import Order from './pages/Order';
+import Promotions from './pages/Promotions';
+import Data from './pages/Data';
+import Logout from './pages/Logout';
 
 
 function App() {
   return (
     <>
-    <BrowserRouter>
+<BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />}/>
-        <Route path="/menu" element={<h1>Menu</h1>}/>
-        <Route path="/order" element={<h1>Order</h1>}/>
-        <Route path="/promotions" element={<h1>Promotions</h1>}/>
-        <Route path="/data" element={<h1>Data</h1>}/>
-        <Route path="/logout" element={<h1>Logout</h1>}/>
+        <Route path="/menu" element={<Menu/>}/>
+        <Route path="/order" element={<Order />}/>
+        <Route path="/promotions" element={<Promotions />}/>
+        <Route path="/data" element={<Data />}/>
+        <Route path="/logout" element={<Logout />}/>
       </Routes>
     </BrowserRouter>
 
