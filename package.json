@@ -12,6 +12,8 @@
   "author": "Lucky Home Cafe'",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "@octokit/rest": "github:octokit/rest.js",
+    "concurrently": "^8.2.2",
+    "multer": "^1.4.5-lts.1"
   }
 }

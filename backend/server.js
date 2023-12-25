@@ -1,13 +1,14 @@
 const express = require('express');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const errorHandler = require('./middleware/errorHandler');
 dotenv.config();
+
 const app = express();
 const port = 5000;
 const connectDb = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true , dbName: 'LuckyHomeCafe'});
+        await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'LuckyHomeCafe' });
         console.log('MongoDB connected');
     }
     catch (err) {
@@ -22,7 +23,6 @@ app.use(express.json());
 app.use('/api', require('./routes/apiRouter'));
 app.use(errorHandler);
 
-app.get('/', (req, res) => res.status(200).json('Success'));
-
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
 
