@@ -1,12 +1,12 @@
 const express = require('express');
-const { createMenuHandler } = require('../controllers/menu');
+const { createMenuHandler, getAllMenuHandler, getRequestedMenuHandler } = require('../controllers/menu');
 const router = express.Router();
 
 // GET all menu
-router.route('/all').get((req, res) => res.status(200).json({ 'message': 'get' }));
+router.route('/all').get(getAllMenuHandler);
 
 // GET menu by name
-router.route('/:menu_name').get((req, res) => res.status(200).json({ 'message': 'get' }));
+router.route('/:menu_name').get(getRequestedMenuHandler);
 
 // GET menu analysis by year and month
 router.route('/analysis/:year/:month').get((req, res) => res.status(200).json({ 'message': 'get' }));

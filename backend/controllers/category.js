@@ -16,4 +16,29 @@ const createCategoryHandler = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { createCategoryHandler };
+const getCategoryListHandler = asyncHandler(async (req, res) => {
+    try {
+        const categoryName = await createCategory.findOne({ category_name: req.params.category_name });
+        if (categoryName) {
+            res.status(200).json(categoryName.category_list);
+        }
+        else {
+            res.status(404).json({ message: "Category not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+const getAllCategoryHandler = asyncHandler(async (req, res) => {
+    try {
+        const allCategory = await createCategory.find({}, { _id: 0, __v: 0 });
+        res.status(200).json(allCategory);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+module.exports = { createCategoryHandler, getCategoryListHandler, getAllCategoryHandler};

@@ -26,4 +26,29 @@ const createMenuHandler = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { createMenuHandler };
+const getAllMenuHandler = asyncHandler(async (req, res) => {
+    try {
+        const allMenu = await createMenu.find({}, {_id: 0, __v: 0});
+        res.status(200).json(allMenu);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+const getRequestedMenuHandler = asyncHandler(async (req, res) => {
+    try {
+        const menu = await createMenu.findOne({ menu_name: req.params.menu_name }, {_id: 0, __v: 0});
+        if (menu) {
+            res.status(200).json(menu);
+        }
+        else {
+            res.status(404).json({ message: "Menu not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+module.exports = { createMenuHandler , getAllMenuHandler, getRequestedMenuHandler };
