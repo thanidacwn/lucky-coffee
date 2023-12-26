@@ -27,6 +27,7 @@ export default function Login() {
                 <div className="button-container">
                     <Button
                         text={buttonText}
+                        className="login-button"
                     />
                 </div>
                 
