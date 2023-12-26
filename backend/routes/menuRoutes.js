@@ -1,5 +1,5 @@
 const express = require('express');
-const { createMenuHandler } = require('../controller/menu');
+const { createMenuHandler } = require('../controllers/menu');
 const router = express.Router();
 
 // GET all menu
