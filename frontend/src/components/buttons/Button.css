@@ -9,11 +9,17 @@
 }
 
 .default-button:hover {
-background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .default-button:disabled {
-background-color: #b5b5b5;
-color: #666666;
-cursor: not-allowed;
+    background-color: #b5b5b5;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.default-button {
+    width: 100%;
+    height: 100%;
+    font-family: 'Mali', cursive;
 }

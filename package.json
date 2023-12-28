@@ -12,6 +12,8 @@
   "author": "Lucky Home Cafe'",
   "license": "MIT",
   "dependencies": {
+    "@syncfusion/ej2-react-buttons": "^24.1.41",
+    "@syncfusion/ej2-react-navigations": "^24.1.41",
     "@octokit/rest": "github:octokit/rest.js",
     "concurrently": "^8.2.2",
     "multer": "^1.4.5-lts.1"
