@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { uploadImageHandler, getImageHandler } = require('../controllers/imageController');
-const { upload } = require('../utils/multerConfig');
+const { uploadImageHandler, getImageHandler, uploadSingleHandler } = require('../controllers/image');
 
-router.route('/upload').post(upload.single(req.file.fieldname), uploadImageHandler);
+router.route('/upload').post(uploadSingleHandler, uploadImageHandler);
+
+module.exports = router;
