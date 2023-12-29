@@ -18,7 +18,7 @@ const createCategoryHandler = asyncHandler(async (req, res) => {
 
 const getCategoryListHandler = asyncHandler(async (req, res) => {
     try {
-        const categoryName = await createCategory.findOne({ category_name: req.params.category_name });
+        const categoryName = await createCategory.findOne({ category_name: { $ne: null, $eq: req.params.category_name } });
         if (categoryName) {
             res.status(200).json(categoryName.category_list);
         }
@@ -41,4 +41,4 @@ const getAllCategoryHandler = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { createCategoryHandler, getCategoryListHandler, getAllCategoryHandler};
+module.exports = { createCategoryHandler, getCategoryListHandler, getAllCategoryHandler };

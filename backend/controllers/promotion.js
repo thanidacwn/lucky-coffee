@@ -6,7 +6,7 @@ const createPromotionHandler = asyncHandler(async (req, res) => {
         if (!req.body.promotion_name || !req.body.promotion_type || !req.body.promotion_discount || !req.body.promotion_expired || !req.body.promotion_image) {
             res.status(400).json({ message: "Invalid Body" });
         }
-        const promotion = createPromotion.findOne({ promotion_name: req.body.promotion_name });
+        const promotion = createPromotion.findOne({ promotion_name: { $ne: null, $eq: req.body.promotion_name } });
         if (promotion) {
             res.status(400).json({ message: "Promotion already exists" });
         }
@@ -32,7 +32,7 @@ const getAllPromotionHandler = asyncHandler(async (req, res) => {
 
 const editPromotionHandler = asyncHandler(async (req, res) => {
     try {
-        const promotion = await createPromotion.findOne({ promotion_name: req.params.promotion_name });
+        const promotion = await createPromotion.findOne({ promotion_name: { $ne: null, $eq: req.params.promotion_name } });
 
         if (!promotion) {
             return res.status(404).json({ message: "Promotion not found" });
@@ -50,7 +50,7 @@ const editPromotionHandler = asyncHandler(async (req, res) => {
 
 const deletePromotionHandler = asyncHandler(async (req, res) => {
     try {
-        const promotion = await createPromotion.findOne({ promotion_name: req.params.promotion_name });
+        const promotion = await createPromotion.findOne({ promotion_name: { $ne: null, $eq: req.params.promotion_name } });
 
         if (!promotion) {
             return res.status(404).json({ message: "Promotion not found" });

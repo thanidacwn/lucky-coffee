@@ -7,7 +7,7 @@ const createMenuHandler = asyncHandler(async (req, res) => {
         if (!req.body.menu_name || !req.body.menu_category || !req.body.menu_image || !req.body.menu_sizes || !req.body.menu_sweetness || !req.body.menu_toppings || !req.body.start_price) {
             res.status(400).json({ message: "Invalid Body" });
         }
-        const menu = await createMenu.findOne({ menu_name: req.body.menu_name });
+        const menu = await createMenu.findOne({ menu_name: { $ne: null, $eq: req.body.menu_name } });
         if (menu) {
             res.status(400).json({ message: "Menu already exists" });
         }
@@ -38,7 +38,7 @@ const getAllMenuHandler = asyncHandler(async (req, res) => {
 
 const getRequestedMenuHandler = asyncHandler(async (req, res) => {
     try {
-        const menu = await createMenu.findOne({ menu_name: req.params.menu_name }, { _id: 0, __v: 0 });
+        const menu = await createMenu.findOne({ menu_name: { $ne: null, $eq: req.params.menu_name } }, { _id: 0, __v: 0 });
         if (menu) {
             res.status(200).json(menu);
         }
@@ -53,7 +53,7 @@ const getRequestedMenuHandler = asyncHandler(async (req, res) => {
 
 const editMenuHandler = asyncHandler(async (req, res) => {
     try {
-        const menu = await createMenu.findOne({ menu_name: req.params.menu_name });
+        const menu = await createMenu.findOne({ menu_name: { $ne: null, $eq: req.params.menu_name } });
 
         if (!menu) {
             return res.status(404).json({ message: "Menu not found" });
@@ -84,7 +84,7 @@ const editMenuHandler = asyncHandler(async (req, res) => {
 
 const deleteMenuHandler = asyncHandler(async (req, res) => {
     try {
-        const menu = await createMenu.findOne({ menu_name: req.params.menu_name });
+        const menu = await createMenu.findOne({ menu_name: { $ne: null, $eq: req.params.menu_name } });
 
         if (!menu) {
             return res.status(404).json({ message: "Menu not found" });

@@ -8,7 +8,8 @@ const createUserHandler = asyncHandler(async (req, res) => {
         if (!req.body.username || !req.body.password) {
             res.status(400).json({ message: "Invalid Body" });
         }
-        if (createUser.findOne({ username: req.body.username })) {
+        const findUser = await createUser.findOne({ username: { $ne: null, $eq: req.body.username } });
+        if (findUser && findUser.username === req.body.username) {
             res.status(400).json({ message: "User already exists" });
         }
         else if (createUser.validate(req.body)) {
@@ -29,10 +30,10 @@ const loginHandler = asyncHandler(async (req, res) => {
             res.status(400).json({ message: "Invalid Body" });
         }
 
-        const user = await createUser.findOne({ username: username });
+        const user = await createUser.findOne({ username: { $ne: null, $eq: username } });
         const isMatch = await bcrypt.compare(password, user.password);
-        if (user && isMatch) {
-            const access_token = jwt.sign({ username: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5m' });
+        if (user.username === req.body.username && isMatch) {
+            const access_token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '5m' });
             res.status(200).json({ access_token: access_token });
         }
         else {
