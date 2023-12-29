@@ -22,4 +22,28 @@ const createUserHandler = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { createUserHandler }
+const loginHandler = asyncHandler(async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        if (!username || !password) {
+            res.status(400).json({ message: "Invalid Body" });
+        }
+
+        const user = await createUser.findOne({ username: username });
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (user && isMatch) {
+            const access_token = jwt.sign({ username: user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5m' });
+            res.status(200).json({ access_token: access_token });
+        }
+        else {
+            res.status(400).json({ message: "Invalid Credentials" });
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+
+    }
+});
+
+module.exports = { createUserHandler, loginHandler }
