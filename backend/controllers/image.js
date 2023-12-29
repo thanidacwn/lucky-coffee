@@ -30,6 +30,10 @@ const uploadImageHandler = asyncHandler(async (req, res) => {
     }
 });
 
+const uploadSingleHandler = asyncHandler(async (req, res) => {
+    upload.single(req.file.fieldname)
+});
+
 const getImageHandler = asyncHandler(async (req, res) => { return; });
 
-module.exports = { uploadImageHandler, getImageHandler };
+module.exports = { uploadImageHandler, getImageHandler, uploadSingleHandler};
