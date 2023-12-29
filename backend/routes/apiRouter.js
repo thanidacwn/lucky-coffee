@@ -7,5 +7,6 @@ router.use('/order', require('./orderRoutes'));
 router.use('/revenue', require('./revenueRoutes'));
 router.use('/promotion', require('./promotionRoutes'));
 router.use('/image', require('./imageRoutes'));
+router.use('/user', require('./userRoutes'));
 
 module.exports = router;
