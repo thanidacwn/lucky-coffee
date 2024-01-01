@@ -28,7 +28,7 @@ export default function Login() {
         }
     }
 
-    const refreshToken = async () => {
+    const refreshToken = async () => {}
     Cookies.get('refresh_token');
 
     return (
