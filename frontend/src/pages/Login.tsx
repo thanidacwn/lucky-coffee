@@ -53,6 +53,7 @@ export default function Login() {
                 <div className="button-container">
                     <Button
                         text={buttonText}
+                        onClick={() => loginHandler('exampleUsername', 'examplePassword')}
                         className="login-button"
                     />
                 </div>

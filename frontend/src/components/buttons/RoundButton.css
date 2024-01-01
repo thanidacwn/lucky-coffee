@@ -1,0 +1,18 @@
+.default-round-button {
+    cursor: pointer;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 2%;
+}
+
+.default-round-button:hover {
+    background-color: #0056b3;
+    width: 2.2%;
+}
+
+.default-round-button:disabled {
+    background-color: #b5b5b5;
+    color: #666666;
+    cursor: not-allowed;
+}

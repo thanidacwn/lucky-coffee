@@ -1,66 +1,73 @@
 import './Menu.css';
 import Header from '../components/Header';
 import Button from '../components/buttons/Button';
-
-const categories = [{
-        "category_name": "coffee",
-        "category_list": [
-            "Iced Americano",
-            "Hot Americano"
-        ]
-    },
-    {
-        "category_name": "tea",
-        "category_list": [
-            "Green Tea",
-            "Milk Tea"
-        ]
-    },
-    {
-        "category_name": "soda",
-        "category_list": [
-            "Strawberry Soda",
-            "Lemon Soda"
-        ]
-    },
-    {
-        "category_name": "juice",
-        "category_list": [
-            "Strawberry Frappe",
-            "Lemonade"
-        ]
-    },
-    {
-        "category_name": "desert",
-        "category_list": [
-            "Chocolate Cake",
-            "Strawberry Cake"
-        ]
-    }
-]
+import MenuCard from '../components/cards/MenuCard';
+import { getMenuCatagories, getMenuItems } from '../services/menuService';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Menu() {
+    const [categories, setCategories] = useState([]);
+    const [error, setError] = useState<Error | null>(null);
+    const [menuContent, setMenuContent] = useState([])
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+          try {
+            const categoriesData = await getMenuCatagories();
+            setCategories(categoriesData);
+          } catch (error) {
+            setError(error as Error);
+          }
+        };
+    
+        fetchCategories();
+      }, []);
+
+    function CapitalizeFirstLetter (word: string) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    async function fetchMenus (catagory_name: string) {
+        try{
+            const menuItems = await getMenuItems(catagory_name);
+            setMenuContent(menuItems);
+        } catch (error) {
+            setError(error as Error);
+        }
+        
+    }
 
     return (
         <>
             <div className="menu-container">
                 <Header />
                 <div className="menus-container">
-                    {categories.map(category => (
+                    {categories.map((category: { category_name: string; }) => (
                         <Button
-                            text={category.category_name}
+                            text={CapitalizeFirstLetter(category.category_name)}
+                            onClick={() => fetchMenus(category.category_name)}
                             className="menu-button"
                         />
                     ))}
                     <Button
                         text={"+ Create Menu"}
+                        onClick={() => navigate('/menu/create')}
                         className="create-menu-button"
                     />
+
+                    {error && <div>Error: {error.message}</div>}
+
                 </div>
                 <div className="menus-cards-container">
-                    To be added...
+                    {menuContent.map(menu => (
+                        <MenuCard 
+                            menu={menu}
+                        />
+                    ))}
                 </div>
-                
             </div>
         </>
     )

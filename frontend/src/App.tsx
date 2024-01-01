@@ -5,6 +5,7 @@ import Order from './pages/Order';
 import Promotions from './pages/Promotions';
 import Data from './pages/Data';
 import Logout from './pages/Logout';
+import CreateMenu from './pages/CreateMenu';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />}/>
           <Route path="/menu" element={<Menu/>}/>
+          <Route path="/menu/create" element={<CreateMenu/>}/>
           <Route path="/order" element={<Order />}/>
           <Route path="/promotions" element={<Promotions />}/>
           <Route path="/data" element={<Data />}/>
