@@ -15,6 +15,10 @@ const defaultSidebar: React.FC = () => {
     const toggleSidebar = () => {
         setIsopen(!isOpen);
     }
+
+    const handleItemClick = (path: string) => {
+        window.location.pathname = path;
+    }
     
     return (
         <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
