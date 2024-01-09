@@ -21,3 +21,13 @@ export async function getMenuItems(category_name: string) {
     }
     
 }
+
+export async function getMenuDetails(menu_name: string) {
+    try {
+        const res = await axios.get(`http://localhost:5173/api/menu/${menu_name}`);
+
+        return res.data
+    } catch (error) {
+        throw error;
+    }
+}

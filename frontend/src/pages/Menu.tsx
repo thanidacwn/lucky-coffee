@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 function Menu() {
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState<Error | null>(null);
-    const [menuContent, setMenuContent] = useState([])
+    const [menuContent, setMenuContent] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -18,6 +19,12 @@ function Menu() {
           try {
             const categoriesData = await getMenuCatagories();
             setCategories(categoriesData);
+
+            if (categoriesData.length > 0) {
+                setSelectedCategory(categoriesData[0].category_name);
+                fetchMenus(categoriesData[0].category_name);
+            }
+
           } catch (error) {
             setError(error as Error);
           }
@@ -30,10 +37,12 @@ function Menu() {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
-    async function fetchMenus (catagory_name: string) {
+    async function fetchMenus(catagory_name: string) {
         try{
             const menuItems = await getMenuItems(catagory_name);
             setMenuContent(menuItems);
+
+            console.log(menuItems);
         } catch (error) {
             setError(error as Error);
         }
@@ -48,7 +57,10 @@ function Menu() {
                     {categories.map((category: { category_name: string; }) => (
                         <Button
                             text={CapitalizeFirstLetter(category.category_name)}
-                            onClick={() => fetchMenus(category.category_name)}
+                            onClick={() => {
+                                setSelectedCategory(category.category_name);
+                                fetchMenus(category.category_name);
+                            }}
                             className="menu-button"
                         />
                     ))}
@@ -62,7 +74,7 @@ function Menu() {
 
                 </div>
                 <div className="menus-cards-container">
-                    {menuContent.map(menu => (
+                    {menuContent.map(menu => (                        
                         <MenuCard 
                             menu={menu}
                         />
