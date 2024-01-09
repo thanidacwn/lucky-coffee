@@ -1,8 +1,5 @@
-// import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-// import { SidebarComponent } from '@syncfusion/ej2-react-navigations';
 import './Sidebar.css';
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import control from '../assets/images/control.png';
 import logo from '../assets/images/logo.png';
 import user from '../assets/images/user-2.png';
@@ -12,40 +9,20 @@ import promotions from '../assets/images/promotions.png';
 import data from '../assets/images/data.png';
 import logout from '../assets/images/logout.png';
 
+const defaultSidebar: React.FC = () => {
+    const [isOpen, setIsopen] = useState(false);
 
-function Sidebar() {
-    // let sidebarObj: SidebarComponent;
-    // function onCreate(): void {
-    //     sidebarObj.element.style.visibility='';
-    // }
-    // function open(): void {
-    //     console.log("Sidebar is opened");
-    // }
-    // function close(): void {
-    //     console.log("Sidebar is closed");
-    // }
-
-    // // Open the Sidebar
-    // function openClick(): void {
-    //     sidebarObj.show();
-    // }
-
-    // // Close the Sidebar
-    // function closeClick(): void {
-    //     sidebarObj.hide();
-    // }
-    const navigate = useNavigate();
-
-    const handleItemClick = (path: string) => {
-      navigate(path);
-    };
+    const toggleSidebar = () => {
+        setIsopen(!isOpen);
+    }
     
     return (
-        <div className="sidebar">
+        <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
         <ul>
-            {/* Add logo */}
-            <img src={control} alt="sidebar-control" className="sidebar-control"/>
-            <img src={logo} alt="sidebar-logo" className="sidebar-logo"/>
+            <button onClick={toggleSidebar} className="sidebar-control">
+                <img src={control} alt="header-control" className="header-control w-8 h-8 absolute right-5 top-5"/>
+            </button>
+            <img src={logo} alt="sidebar-logo" className="sidebar-logo mt-10"/>
             <li>
                 <img src={user} alt="sidebar-user" className="sidebar-icon"/>Username
             </li>
@@ -69,4 +46,4 @@ function Sidebar() {
     );
 };
 
-export default Sidebar;
+export default defaultSidebar;
