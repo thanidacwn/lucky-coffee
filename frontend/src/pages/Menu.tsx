@@ -1,6 +1,7 @@
 import './Menu.css';
 import Header from '../components/Header';
 import Button from '../components/buttons/Button';
+import Sidebar from '../components/Sidebar';
 
 const categories = [{
         "category_name": "coffee",
@@ -43,6 +44,7 @@ function Menu() {
 
     return (
         <>
+            <Sidebar />
             <div className="menu-container">
                 <Header />
                 <div className="menus-container">
