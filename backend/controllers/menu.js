@@ -14,7 +14,7 @@ const createMenuHandler = asyncHandler(async (req, res) => {
         else if (createMenu.validate(req.body)) {
             const newMenu = await createMenu.create(req.body);
             res.status(201).json(newMenu);
-            const valid_category = ['coffee', 'tea', 'soda', 'juice', 'dessert', 'others']
+            const valid_category = ['coffee', 'cold foam coffee', 'dirty coffee','milk','tea', 'soda', 'others']
             if (valid_category.includes(req.body.menu_category)) {
                 const updateCategoryList = await createCategory.updateOne({ category_name: req.body.menu_category }, { $push: { category_list: req.body.menu_name } });
                 console.log(updateCategoryList)
@@ -91,6 +91,7 @@ const deleteMenuHandler = asyncHandler(async (req, res) => {
         }
 
         const deleteMenu = await createMenu.deleteOne({ menu_name: req.params.menu_name });
+        const updateCategoryList = await createCategory.updateOne({ category_name: menu.menu_category }, { $pull: { category_list: req.params.menu_name } });
 
         res.status(200).json(deleteMenu);
     } catch (error) {
