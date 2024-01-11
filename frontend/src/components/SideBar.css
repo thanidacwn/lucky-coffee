@@ -8,8 +8,18 @@
     left: 0;
     background-color: #7D5F50;
     padding-top: 20px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
   }
-  
+
+.sidebar.closed {
+    background-color: transparent;
+    transform: translateX(-190px);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -34,6 +44,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: 0ms;
 
 }
 

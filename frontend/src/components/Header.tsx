@@ -1,6 +1,8 @@
 import './Header.css'
 import {useState, useEffect} from 'react';
 import { format } from 'date-fns';
+import control from '../assets/images/control.png';
+
 
 export default function Header() {
 
